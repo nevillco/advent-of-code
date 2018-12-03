@@ -38,12 +38,15 @@ final class Day3: Day {
     }
 
     struct Claim {
+        let id: Int
         let position: Position
         let size: Size
         init(line: String) {
             let items = line.split(separator: " ")
+            let idString = String(items[0].dropFirst())
             let positionString = String(items[2].dropLast())
             let sizeString = String(items[3])
+            id = Int(idString)!
             position = .init(substring: positionString)
             size = .init(substring: sizeString)
         }
@@ -59,12 +62,12 @@ final class Day3: Day {
     lazy var claims: [Claim] = {
         return self.lines().map(Claim.init)
     }()
+
     enum ClaimState {
-        case taken
+        case taken(id: Int)
         case overlapped
     }
-
-    func part1() -> String {
+    lazy var claimStates: [Position: ClaimState] = {
         var claimStates: [Position: ClaimState] = [:]
         for claim in claims {
             for position in claim.allPositions {
@@ -72,23 +75,39 @@ final class Day3: Day {
                 case .some:
                     claimStates[position] = .overlapped
                 case nil:
-                    claimStates[position] = .taken
+                    claimStates[position] = .taken(id: claim.id)
                 }
             }
         }
+        return claimStates
+    }()
+
+    func part1() -> String {
         let numOverlaps = claimStates.reduce(into: 0) { (result, tuple) in
             switch tuple.value {
-            case .overlapped:
-                result += 1
             case .taken:
                 break
+            case .overlapped:
+                result += 1
             }
         }
         return String(describing: numOverlaps)
     }
 
     func part2() -> String {
-        return ""
+        let firstEligibleClaim = claims.first(where: { !hasOverlaps($0) })
+        return String(describing: firstEligibleClaim!.id)
+    }
+
+    func hasOverlaps(_ claim: Claim) -> Bool {
+        return claim.allPositions.contains(where: { (position) -> Bool in
+            switch claimStates[position] {
+            case .overlapped?:
+                return true
+            case .taken?, nil:
+                return false
+            }
+        })
     }
 
 }
