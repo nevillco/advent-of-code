@@ -10,4 +10,30 @@ import Foundation
 
 final class Day1: Day {
 
+    func compute() -> Solutions {
+        let integers = getInput()
+            .split(separator: "\n")
+            .map({ Int($0)! })
+        var allFrequencies: [Int: Bool] = [:]
+        var firstRepeatedFrequency: Int? = nil
+        let finalFrequency = integers.reduce(into: 0) { (result, next) in
+            result += next
+            if allFrequencies[result] == true, firstRepeatedFrequency == nil {
+                firstRepeatedFrequency = result
+            }
+            allFrequencies[result] = true
+        }
+        var result = finalFrequency
+        while firstRepeatedFrequency == nil {
+            for next in integers {
+                result += next
+                if allFrequencies[result] == true, firstRepeatedFrequency == nil {
+                    firstRepeatedFrequency = result
+                }
+                allFrequencies[result] = true
+            }
+        }
+        return ("\(finalFrequency)", "\(firstRepeatedFrequency!)")
+    }
+
 }

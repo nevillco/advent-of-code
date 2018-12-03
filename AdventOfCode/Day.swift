@@ -10,6 +10,9 @@ import Foundation
 
 protocol Day {
 
+    typealias Solutions = (part1: String, part2: String)
+    func compute() -> Solutions
+
 }
 
 extension Day {
