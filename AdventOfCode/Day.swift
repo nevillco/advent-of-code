@@ -17,7 +17,7 @@ protocol Day {
 
 extension Day {
 
-    func getInput() -> String {
+    func input() -> String {
         guard let path = Bundle.main.path(forResource: String(describing: type(of: self)), ofType: "txt") else {
             fatalError("Input text file not found in bundle")
         }
@@ -29,6 +29,10 @@ extension Day {
             fatalError("Unable to parse input file: \(error.localizedDescription)")
         }
         return contents
+    }
+
+    func lines() -> [String] {
+        return input().split(separator: "\n").map({ String($0) })
     }
 
 }

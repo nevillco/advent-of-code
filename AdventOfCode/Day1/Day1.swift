@@ -11,9 +11,7 @@ import Foundation
 final class Day1: Day {
 
     func compute() -> Solutions {
-        let integers = getInput()
-            .split(separator: "\n")
-            .map({ Int($0)! })
+        let integers = lines().map({ Int($0)! })
         var allFrequencies: [Int: Bool] = [:]
         var firstRepeatedFrequency: Int? = nil
         func handleIteration(result: inout Int, next: Int) {
