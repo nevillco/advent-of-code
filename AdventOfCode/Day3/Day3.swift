@@ -10,7 +10,7 @@ import Foundation
 
 final class Day3: Day {
 
-    struct Position {
+    struct Position: Hashable {
         let x: Int
         let y: Int
 
@@ -18,6 +18,11 @@ final class Day3: Day {
             let separated = substring.split(separator: ",")
             x = Int(separated[0])!
             y = Int(separated[1])!
+        }
+
+        init(x: Int, y: Int) {
+            self.x = x
+            self.y = y
         }
     }
 
@@ -28,7 +33,7 @@ final class Day3: Day {
         init(substring: String) {
             let separated = substring.split(separator: "x")
             width = Int(separated[0])!
-            height = Int(separated[0])!
+            height = Int(separated[1])!
         }
     }
 
@@ -42,11 +47,44 @@ final class Day3: Day {
             position = .init(substring: positionString)
             size = .init(substring: sizeString)
         }
+
+        var allPositions: [Position] {
+            let topRow = (0..<size.width).map({ Position(x: self.position.x + $0, y: self.position.y) })
+            return topRow.flatMap({ position in
+                return (0..<self.size.height).map({ Position(x: position.x, y: position.y + $0) })
+            })
+        }
+
+    }
+    lazy var claims: [Claim] = {
+        return self.lines().map(Claim.init)
+    }()
+    enum ClaimState {
+        case taken
+        case overlapped
     }
 
     func part1() -> String {
-        print(lines().map({ Claim(line: $0) }))
-        return ""
+        var claimStates: [Position: ClaimState] = [:]
+        for claim in claims {
+            for position in claim.allPositions {
+                switch claimStates[position] {
+                case .some:
+                    claimStates[position] = .overlapped
+                case nil:
+                    claimStates[position] = .taken
+                }
+            }
+        }
+        let numOverlaps = claimStates.reduce(into: 0) { (result, tuple) in
+            switch tuple.value {
+            case .overlapped:
+                result += 1
+            case .taken:
+                break
+            }
+        }
+        return String(describing: numOverlaps)
     }
 
     func part2() -> String {
