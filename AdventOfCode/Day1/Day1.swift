@@ -16,21 +16,20 @@ final class Day1: Day {
             .map({ Int($0)! })
         var allFrequencies: [Int: Bool] = [:]
         var firstRepeatedFrequency: Int? = nil
-        let finalFrequency = integers.reduce(into: 0) { (result, next) in
+        func handleIteration(result: inout Int, next: Int) {
             result += next
             if allFrequencies[result] == true, firstRepeatedFrequency == nil {
                 firstRepeatedFrequency = result
             }
             allFrequencies[result] = true
         }
+        let finalFrequency = integers.reduce(into: 0) { (result, next) in
+            handleIteration(result: &result, next: next)
+        }
         var result = finalFrequency
         while firstRepeatedFrequency == nil {
             for next in integers {
-                result += next
-                if allFrequencies[result] == true, firstRepeatedFrequency == nil {
-                    firstRepeatedFrequency = result
-                }
-                allFrequencies[result] = true
+                handleIteration(result: &result, next: next)
             }
         }
         return ("\(finalFrequency)", "\(firstRepeatedFrequency!)")
