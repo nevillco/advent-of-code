@@ -10,12 +10,17 @@ import Foundation
 
 protocol Day {
 
-    typealias Solutions = (part1: String, part2: String)
-    func compute() -> Solutions
+    func part1() -> String
+    func part2() -> String
 
 }
 
 extension Day {
+
+    typealias Solutions = (part1: String, part2: String)
+    func compute() -> Solutions {
+        return (part1(), part2())
+    }
 
     func input() -> String {
         guard let path = Bundle.main.path(forResource: String(describing: type(of: self)), ofType: "txt") else {
