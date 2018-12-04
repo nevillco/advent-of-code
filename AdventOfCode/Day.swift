@@ -41,3 +41,15 @@ extension Day {
     }
 
 }
+
+extension Day {
+
+    func part1() -> String {
+        return ""
+    }
+
+    func part2() -> String {
+        return ""
+    }
+
+}
