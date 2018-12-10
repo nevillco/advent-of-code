@@ -6,4 +6,4 @@
 //  Copyright © 2018 Connor Neville. All rights reserved.
 //
 
-print(Day9().compute())
+print(Day6().compute())

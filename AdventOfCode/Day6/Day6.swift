@@ -11,41 +11,29 @@ import Foundation
 final class Day6: Day {
 
     struct IDPosition: Equatable, Hashable {
-        let x: Int
-        let y: Int
         let id: Int
+        let position: Position
+
+        var x: Int { return position.x }
+        var y: Int { return position.y }
 
         static var nextID = 0
 
         init(line: String) {
+            id = IDPosition.nextID
+            IDPosition.nextID += 1
             let parts = line.split(separator: ",")
             let x = Int(parts[0])!
             let y = Int(parts[1].dropFirst())!
-            self.init(x: x, y: y)
-        }
-
-        init(x: Int, y: Int) {
-            self.x = x
-            self.y = y
-            id = IDPosition.nextID
-            IDPosition.nextID += 1
+            position = .init(x: x, y: y)
         }
 
         func distance(from other: Position) -> Int {
-            return abs(x - other.x) + abs(y - other.y)
+            return position.distance(from: other)
         }
 
     }
 
-    struct Position {
-        let x: Int
-        let y: Int
-
-        init(x: Int, y: Int) {
-            self.x = x
-            self.y = y
-        }
-    }
     lazy var positions: [IDPosition] = { lines().map({ IDPosition(line: $0) }) }()
 
     typealias Bounds = (x: ClosedRange<Int>, y: ClosedRange<Int>)
@@ -86,16 +74,16 @@ final class Day6: Day {
         let maxX = outerBounds.x.max()!
         let minY = outerBounds.y.min()!
         let maxY = outerBounds.y.max()!
-        let upperBoundRow = (minX...maxX).map({ Day6.Position(x: $0, y: minY - 1) })
-        let lowerBoundRow = (minX...maxX).map({ Day6.Position(x: $0, y: maxY + 1) })
-        let leftBoundRow = (minY...maxY).map({ Day6.Position(x: minX - 1, y: $0) })
-        let rightBoundRow = (minY...maxY).map({ Day6.Position(x: maxX + 1, y: $0) })
+        let upperBoundRow = (minX...maxX).map({ Position(x: $0, y: minY - 1) })
+        let lowerBoundRow = (minX...maxX).map({ Position(x: $0, y: maxY + 1) })
+        let leftBoundRow = (minY...maxY).map({ Position(x: minX - 1, y: $0) })
+        let rightBoundRow = (minY...maxY).map({ Position(x: maxX + 1, y: $0) })
         let boundChecks = [upperBoundRow, lowerBoundRow, leftBoundRow, rightBoundRow].flatMap({ $0 })
         let infiniteAreas = boundChecks.compactMap({ closest(to: $0) })
         return Array(Set(infiniteAreas))
     }
 
-    func closest(to position: Day6.Position) -> Day6.IDPosition? {
+    func closest(to position: Position) -> Day6.IDPosition? {
         let sorted = positions.sorted { $0.distance(from: position) < $1.distance(from: position) }
         let closest = sorted.first!
         let second = sorted[1]
@@ -103,7 +91,7 @@ final class Day6: Day {
         return isTie ? nil : closest
     }
 
-    func absoluteDistance(to position: Day6.Position) -> Int {
+    func absoluteDistance(to position: Position) -> Int {
         return positions.reduce(into: 0, { $0 += $1.distance(from: position) })
     }
 
