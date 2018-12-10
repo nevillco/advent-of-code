@@ -28,6 +28,10 @@ extension Position {
         return abs(x - other.x) + abs(y - other.y)
     }
 
+    static func +(lhs: Self, rhs: Self) -> AnyPosition {
+        return .init(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
+    }
+
 }
 
 extension Array where Element: Position {

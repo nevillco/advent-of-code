@@ -27,11 +27,19 @@ final class Day10: Day {
             let secondPair = values(line[indices(line.lastIndex)])
             velocity = .init(x: secondPair[0], y: secondPair[1])
         }
+
+        init(position: AnyPosition, velocity: AnyPosition) {
+            self.position = position
+            self.velocity = velocity
+        }
+
+        var next: Vector {
+            return .init(position: position + velocity, velocity: velocity)
+        }
     }
     lazy var vectors: [Vector] = { lines().map { .init(line: $0) } }()
 
     func part1() -> String {
-        print(vectors)
         return ""
     }
 
