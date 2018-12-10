@@ -25,6 +25,7 @@
 		2D5A774B21BAB18500610A5F /* Day7.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2D5A774A21BAB18500610A5F /* Day7.txt */; };
 		2D5A775121BDAA5900610A5F /* Day8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5A775021BDAA5900610A5F /* Day8.swift */; };
 		2D5A775321BDAA6700610A5F /* Day8.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2D5A775221BDAA6700610A5F /* Day8.txt */; };
+		2D5A775621BDC28E00610A5F /* Day9.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5A775521BDC28E00610A5F /* Day9.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		2D5A774A21BAB18500610A5F /* Day7.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Day7.txt; sourceTree = "<group>"; };
 		2D5A775021BDAA5900610A5F /* Day8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day8.swift; sourceTree = "<group>"; };
 		2D5A775221BDAA6700610A5F /* Day8.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Day8.txt; sourceTree = "<group>"; };
+		2D5A775521BDC28E00610A5F /* Day9.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day9.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 		2D5A770F21B41C5D00610A5F /* AdventOfCode */ = {
 			isa = PBXGroup;
 			children = (
+				2D5A775421BDC28300610A5F /* Day9 */,
 				2D5A774F21BDAA4E00610A5F /* Day8 */,
 				2D5A774721BAB16F00610A5F /* Day7 */,
 				2D5A774221B95D6600610A5F /* Day6 */,
@@ -167,6 +170,14 @@
 			path = Day8;
 			sourceTree = "<group>";
 		};
+		2D5A775421BDC28300610A5F /* Day9 */ = {
+			isa = PBXGroup;
+			children = (
+				2D5A775521BDC28E00610A5F /* Day9.swift */,
+			);
+			path = Day9;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -249,6 +260,7 @@
 				2D5A773C21B735DB00610A5F /* Day5.swift in Sources */,
 				2D5A773721B63B5300610A5F /* Day4.swift in Sources */,
 				2D5A773421B5816300610A5F /* Day3.swift in Sources */,
+				2D5A775621BDC28E00610A5F /* Day9.swift in Sources */,
 				2D5A772D21B571AC00610A5F /* Day2.swift in Sources */,
 				2D5A771121B41C5E00610A5F /* main.swift in Sources */,
 				2D5A774921BAB17A00610A5F /* Day7.swift in Sources */,
