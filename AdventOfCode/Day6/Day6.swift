@@ -10,51 +10,36 @@ import Foundation
 
 final class Day6: Day {
 
-    struct IDPosition: Equatable, Hashable {
-        let id: Int
-        let position: Position
+    struct IDPosition: Position {
 
-        var x: Int { return position.x }
-        var y: Int { return position.y }
+        let id: Int
+        let x: Int
+        let y: Int
 
         static var nextID = 0
 
         init(line: String) {
-            id = IDPosition.nextID
-            IDPosition.nextID += 1
             let parts = line.split(separator: ",")
             let x = Int(parts[0])!
             let y = Int(parts[1].dropFirst())!
-            position = .init(x: x, y: y)
+            self.init(x: x, y: y)
         }
 
-        func distance(from other: Position) -> Int {
-            return position.distance(from: other)
+        init(x: Int, y: Int) {
+            id = IDPosition.nextID
+            IDPosition.nextID += 1
+            self.x = x
+            self.y = y
         }
 
     }
 
     lazy var positions: [IDPosition] = { lines().map({ IDPosition(line: $0) }) }()
-
-    typealias Bounds = (x: ClosedRange<Int>, y: ClosedRange<Int>)
-    lazy var outerBounds: Day6.Bounds = {
-        let xs = positions.sorted { $0.x < $1.x }
-        let ys = positions.sorted { $0.y < $1.y }
-        let (minX, maxX) = (xs.first!.x, xs.last!.x)
-        let (minY, maxY) = (ys.first!.y, ys.last!.y)
-        return (minX...maxX, minY...maxY)
-    }()
-    lazy var checkablePositions: [Position] = {
-        return outerBounds.x.flatMap { x in outerBounds.y.map { y in Position(x: x, y: y)  }}
-    }()
+    lazy var bounds: Bounds = { positions.bounds }()
 
     func part1() -> String {
-        // [Position ID: number of times being closest]
-        var closest: [Int: Int] = [:]
-        for position in checkablePositions {
-            if let winner = self.closest(to: position) {
-                closest[winner.id, default: 0] += 1
-            }
+        let closest: [Int: Int] = bounds.allPositions.reduce(into: [:]) { (dict, next) in
+            if let winner = self.closest(to: next) { dict[winner.id, default: 0] += 1 }
         }
         let invalidIDs = infiniteAreaPositions().map({ $0.id })
         let winner = closest.sorted { $0.value > $1.value }
@@ -63,36 +48,32 @@ final class Day6: Day {
     }
 
     func part2() -> String {
-        let answer = checkablePositions.map { absoluteDistance(to: $0) }
+        let answer = bounds.allPositions.map { absoluteDistance(to: $0) }
             .filter { $0 < 10000 }
             .count
         return String(describing: answer)
     }
 
     func infiniteAreaPositions() -> [IDPosition] {
-        let minX = outerBounds.x.min()!
-        let maxX = outerBounds.x.max()!
-        let minY = outerBounds.y.min()!
-        let maxY = outerBounds.y.max()!
-        let upperBoundRow = (minX...maxX).map({ Position(x: $0, y: minY - 1) })
-        let lowerBoundRow = (minX...maxX).map({ Position(x: $0, y: maxY + 1) })
-        let leftBoundRow = (minY...maxY).map({ Position(x: minX - 1, y: $0) })
-        let rightBoundRow = (minY...maxY).map({ Position(x: maxX + 1, y: $0) })
+        let upperBoundRow = bounds.xValues.map({ AnyPosition(x: $0, y: bounds.minY - 1) })
+        let lowerBoundRow = bounds.xValues.map({ AnyPosition(x: $0, y: bounds.maxY + 1) })
+        let leftBoundRow = bounds.yValues.map({ AnyPosition(x: bounds.minX - 1, y: $0) })
+        let rightBoundRow = bounds.yValues.map({ AnyPosition(x: bounds.maxX + 1, y: $0) })
         let boundChecks = [upperBoundRow, lowerBoundRow, leftBoundRow, rightBoundRow].flatMap({ $0 })
         let infiniteAreas = boundChecks.compactMap({ closest(to: $0) })
         return Array(Set(infiniteAreas))
     }
 
-    func closest(to position: Position) -> Day6.IDPosition? {
-        let sorted = positions.sorted { $0.distance(from: position) < $1.distance(from: position) }
+    func closest(to position: AnyPosition) -> IDPosition? {
+        let sorted = positions.sorted { $0.manhattanDistance(from: position) < $1.manhattanDistance(from: position) }
         let closest = sorted.first!
         let second = sorted[1]
-        let isTie = closest.distance(from: position) == second.distance(from: position)
+        let isTie = closest.manhattanDistance(from: position) == second.manhattanDistance(from: position)
         return isTie ? nil : closest
     }
 
-    func absoluteDistance(to position: Position) -> Int {
-        return positions.reduce(into: 0, { $0 += $1.distance(from: position) })
+    func absoluteDistance(to position: AnyPosition) -> Int {
+        return positions.reduce(into: 0, { $0 += $1.manhattanDistance(from: position) })
     }
 
 }
