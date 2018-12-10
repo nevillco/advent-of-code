@@ -39,8 +39,40 @@ final class Day10: Day {
     }
     lazy var vectors: [Vector] = { lines().map { .init(line: $0) } }()
 
-    func part1() -> String {
-        return ""
+    func run() {
+        let (newVectors, increments) = incrementUntilValid(vectors)
+        let part1 = printableStrings(newVectors)
+        print("part1:")
+        for line in part1 {
+            print(line)
+        }
+        print("part2: \(increments)")
+    }
+
+    func printableStrings(_ vectors: [Vector]) -> [String] {
+        var positions: [AnyPosition: Bool] = vectors.reduce(into: [:]) { (result, vector) in
+            result[vector.position] = true
+        }
+        let bounds = vectors.map { $0.position }.bounds
+        return bounds.yValues.reduce(into: []) { (arrayResult, yValue) in
+            let row: String = bounds.xValues.reduce(into: "", { (stringResult, xValue) in
+                let testPosition = AnyPosition(x: xValue, y: yValue)
+                stringResult.append(positions[testPosition, default: false] ? "X" : "_")
+            })
+            arrayResult.append(row)
+        }
+    }
+
+    func incrementUntilValid(_ vectors: [Vector]) -> ([Vector], Int) {
+        var increments = 0
+        var vectors = vectors
+        var bounds = vectors.map { $0.position }.bounds
+        while bounds.yValues.count > 10 {
+            vectors = vectors.map { $0.next }
+            bounds = vectors.map { $0.position }.bounds
+            increments += 1
+        }
+        return (vectors, increments)
     }
 
 }

@@ -18,8 +18,12 @@ struct Bounds {
     var minY: Int { return yValues.min()! }
     var maxY: Int { return yValues.max()! }
 
-    var allPositions: [AnyPosition] {
-        return xValues.flatMap { x in yValues.map { y in AnyPosition(x: x, y: y)  }}
+    var allPositions: [[AnyPosition]] {
+        return xValues.map { x in yValues.map { y in AnyPosition(x: x, y: y) }}
+    }
+
+    var flattenedPositions: [AnyPosition] {
+        return xValues.flatMap { x in yValues.map { y in AnyPosition(x: x, y: y) }}
     }
 
 }

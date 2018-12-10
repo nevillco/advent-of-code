@@ -38,7 +38,7 @@ final class Day6: Day {
     lazy var bounds: Bounds = { positions.bounds }()
 
     func part1() -> String {
-        let closest: [Int: Int] = bounds.allPositions.reduce(into: [:]) { (dict, next) in
+        let closest: [Int: Int] = bounds.flattenedPositions.reduce(into: [:]) { (dict, next) in
             if let winner = self.closest(to: next) { dict[winner.id, default: 0] += 1 }
         }
         let invalidIDs = infiniteAreaPositions().map({ $0.id })
@@ -48,7 +48,7 @@ final class Day6: Day {
     }
 
     func part2() -> String {
-        let answer = bounds.allPositions.map { absoluteDistance(to: $0) }
+        let answer = bounds.flattenedPositions.map { absoluteDistance(to: $0) }
             .filter { $0 < 10000 }
             .count
         return String(describing: answer)

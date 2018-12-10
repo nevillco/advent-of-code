@@ -17,9 +17,8 @@ protocol Day {
 
 extension Day {
 
-    typealias Solutions = (part1: String, part2: String)
-    func compute() -> Solutions {
-        return (part1(), part2())
+    func run() {
+        print("part1: \(part1()), part2: \(part2())")
     }
 
     func input() -> String {
