@@ -18,7 +18,7 @@ protocol Day {
 extension Day {
 
     func run() {
-        print("part1: \(part1()), part2: \(part2())")
+        print("part1: \(part1())\npart2: \(part2())")
     }
 
     func input() -> String {

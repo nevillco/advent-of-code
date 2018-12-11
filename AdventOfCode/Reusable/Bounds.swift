@@ -26,4 +26,16 @@ struct Bounds {
         return xValues.flatMap { x in yValues.map { y in AnyPosition(x: x, y: y) }}
     }
 
+    func subrange(topLeft: AnyPosition, x: Int, y: Int) -> Bounds? {
+        let minX = topLeft.x
+        let maxX = topLeft.x + x
+        let minY = topLeft.y
+        let maxY = topLeft.y + y
+        guard xValues.contains(minX), xValues.contains(maxX),
+            yValues.contains(minY), yValues.contains(maxY) else {
+            return nil
+        }
+        return .init(xValues: minX...maxX, yValues: minY...maxY)
+    }
+
 }
