@@ -11,7 +11,7 @@ import Foundation
 final class Day1: Day {
 
     lazy var integers: [Int] = {
-        return lines().map({ Int($0)! })
+        return input().lines.map({ Int($0)! })
     }()
 
     func part1() -> String {

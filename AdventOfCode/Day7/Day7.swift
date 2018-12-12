@@ -26,7 +26,9 @@ final class Day7: Day {
         }
     }
     lazy var stepRequirements: [StepRequirement] = {
-        return lines().map { StepRequirement(line: $0) }.sorted { $0.required < $1.required }
+        return input().lines
+            .map { StepRequirement(line: $0) }
+            .sorted { $0.required < $1.required }
     }()
     lazy var allSteps: [String] = {
         return Array(Set(stepRequirements.map { $0.required } + stepRequirements.map { $0.enabling }))

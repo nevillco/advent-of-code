@@ -37,7 +37,7 @@ final class Day10: Day {
             return .init(position: position + velocity, velocity: velocity)
         }
     }
-    lazy var vectors: [Vector] = { lines().map { .init(line: $0) } }()
+    lazy var vectors: [Vector] = { input().lines.map { .init(line: $0) } }()
 
     func run() {
         let (newVectors, increments) = incrementUntilValid(vectors)

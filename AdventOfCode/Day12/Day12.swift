@@ -23,7 +23,7 @@ final class Day12: Day {
 
         init(lines: [String]) {
             let values = lines[0].split(separator: " ").last!.map { $0.potValue }
-            let rules = lines[1...].map { Rule(line: $0) }
+            let rules = lines[2...].map { Rule(line: $0) }
             self.init(values: values, rules: rules, offset: 0)
         }
 
@@ -69,7 +69,7 @@ final class Day12: Day {
         }
     }
 
-    lazy var arrangement: PotArrangement = { .init(lines: lines()) }()
+    lazy var arrangement: PotArrangement = { .init(lines: input().lines) }()
 
     func iterate(_ arrangement: PotArrangement, times: Int) -> PotArrangement {
         guard times > 0 else {

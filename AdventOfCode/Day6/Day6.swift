@@ -34,7 +34,7 @@ final class Day6: Day {
 
     }
 
-    lazy var positions: [IDPosition] = { lines().map({ IDPosition(line: $0) }) }()
+    lazy var positions: [IDPosition] = { input().lines.map({ IDPosition(line: $0) }) }()
     lazy var bounds: Bounds = { positions.bounds }()
 
     func part1() -> String {

@@ -35,10 +35,6 @@ extension Day {
         return contents
     }
 
-    func lines() -> [String] {
-        return input().split(separator: "\n").map({ String($0) })
-    }
-
 }
 
 extension Day {

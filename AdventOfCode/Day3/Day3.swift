@@ -60,7 +60,7 @@ final class Day3: Day {
 
     }
     lazy var claims: [Claim] = {
-        return self.lines().map(Claim.init)
+        return input().lines.map(Claim.init)
     }()
 
     enum ClaimState {

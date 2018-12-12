@@ -49,7 +49,7 @@ final class Day4: Day {
         }
     }
     lazy var entries: [Entry] = {
-        return self.lines()
+        return self.input().lines
             .map({ Entry(line: $0) })
             .sorted(by: { (e1, e2) in e1.date < e2.date })
     }()

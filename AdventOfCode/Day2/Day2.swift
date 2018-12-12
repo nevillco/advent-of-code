@@ -11,7 +11,7 @@ import Foundation
 final class Day2: Day {
 
     lazy var lines: [String] = {
-        return self.lines()
+        return input().lines
     }()
 
     func part1() -> String {

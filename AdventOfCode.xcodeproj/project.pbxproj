@@ -32,6 +32,7 @@
 		2D5A776421BEB16000610A5F /* Bounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5A776321BEB16000610A5F /* Bounds.swift */; };
 		2D814FA321C14A2E0069BF89 /* Day12.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D814FA221C14A2E0069BF89 /* Day12.swift */; };
 		2D814FA521C14A390069BF89 /* Day12.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2D814FA421C14A390069BF89 /* Day12.txt */; };
+		2D814FA721C164270069BF89 /* String+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D814FA621C164270069BF89 /* String+Utility.swift */; };
 		2DE023D721C025F700AE2FBF /* Day11.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE023D621C025F700AE2FBF /* Day11.swift */; };
 		2DE023D921C0275B00AE2FBF /* Int+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE023D821C0275B00AE2FBF /* Int+Utility.swift */; };
 /* End PBXBuildFile section */
@@ -64,6 +65,7 @@
 		2D5A776321BEB16000610A5F /* Bounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bounds.swift; sourceTree = "<group>"; };
 		2D814FA221C14A2E0069BF89 /* Day12.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day12.swift; sourceTree = "<group>"; };
 		2D814FA421C14A390069BF89 /* Day12.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Day12.txt; sourceTree = "<group>"; };
+		2D814FA621C164270069BF89 /* String+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utility.swift"; sourceTree = "<group>"; };
 		2DE023D621C025F700AE2FBF /* Day11.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day11.swift; sourceTree = "<group>"; };
 		2DE023D821C0275B00AE2FBF /* Int+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Utility.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -213,6 +215,7 @@
 				2D5A776121BEAE5300610A5F /* Position.swift */,
 				2D5A776321BEB16000610A5F /* Bounds.swift */,
 				2DE023D821C0275B00AE2FBF /* Int+Utility.swift */,
+				2D814FA621C164270069BF89 /* String+Utility.swift */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				2D5A772D21B571AC00610A5F /* Day2.swift in Sources */,
 				2DE023D721C025F700AE2FBF /* Day11.swift in Sources */,
 				2D5A771121B41C5E00610A5F /* main.swift in Sources */,
+				2D814FA721C164270069BF89 /* String+Utility.swift in Sources */,
 				2D5A774921BAB17A00610A5F /* Day7.swift in Sources */,
 				2D5A772A21B56DAD00610A5F /* Day.swift in Sources */,
 			);
