@@ -33,6 +33,9 @@
 		2D814FA321C14A2E0069BF89 /* Day12.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D814FA221C14A2E0069BF89 /* Day12.swift */; };
 		2D814FA521C14A390069BF89 /* Day12.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2D814FA421C14A390069BF89 /* Day12.txt */; };
 		2D814FA721C164270069BF89 /* String+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D814FA621C164270069BF89 /* String+Utility.swift */; };
+		2D814FF721C299FC0069BF89 /* Day13.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2D814FF621C299FC0069BF89 /* Day13.txt */; };
+		2D814FF921C29A0F0069BF89 /* Day13.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D814FF821C29A0F0069BF89 /* Day13.swift */; };
+		2D814FFB21C2A1630069BF89 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D814FFA21C2A1630069BF89 /* Direction.swift */; };
 		2DE023D721C025F700AE2FBF /* Day11.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE023D621C025F700AE2FBF /* Day11.swift */; };
 		2DE023D921C0275B00AE2FBF /* Int+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE023D821C0275B00AE2FBF /* Int+Utility.swift */; };
 /* End PBXBuildFile section */
@@ -66,6 +69,9 @@
 		2D814FA221C14A2E0069BF89 /* Day12.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day12.swift; sourceTree = "<group>"; };
 		2D814FA421C14A390069BF89 /* Day12.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Day12.txt; sourceTree = "<group>"; };
 		2D814FA621C164270069BF89 /* String+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utility.swift"; sourceTree = "<group>"; };
+		2D814FF621C299FC0069BF89 /* Day13.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Day13.txt; sourceTree = "<group>"; };
+		2D814FF821C29A0F0069BF89 /* Day13.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day13.swift; sourceTree = "<group>"; };
+		2D814FFA21C2A1630069BF89 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		2DE023D621C025F700AE2FBF /* Day11.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day11.swift; sourceTree = "<group>"; };
 		2DE023D821C0275B00AE2FBF /* Int+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Utility.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,6 +106,7 @@
 		2D5A770F21B41C5D00610A5F /* AdventOfCode */ = {
 			isa = PBXGroup;
 			children = (
+				2D814FF521C299C40069BF89 /* Day13 */,
 				2D814FA121C14A160069BF89 /* Day12 */,
 				2DE023D521C025E200AE2FBF /* Day11 */,
 				2D5A775921BEABC800610A5F /* Day10 */,
@@ -216,6 +223,7 @@
 				2D5A776321BEB16000610A5F /* Bounds.swift */,
 				2DE023D821C0275B00AE2FBF /* Int+Utility.swift */,
 				2D814FA621C164270069BF89 /* String+Utility.swift */,
+				2D814FFA21C2A1630069BF89 /* Direction.swift */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -227,6 +235,15 @@
 				2D814FA421C14A390069BF89 /* Day12.txt */,
 			);
 			path = Day12;
+			sourceTree = "<group>";
+		};
+		2D814FF521C299C40069BF89 /* Day13 */ = {
+			isa = PBXGroup;
+			children = (
+				2D814FF621C299FC0069BF89 /* Day13.txt */,
+				2D814FF821C29A0F0069BF89 /* Day13.swift */,
+			);
+			path = Day13;
 			sourceTree = "<group>";
 		};
 		2DE023D521C025E200AE2FBF /* Day11 */ = {
@@ -298,6 +315,7 @@
 				2D5A773E21B7360600610A5F /* Day5.txt in Resources */,
 				2D5A773921B63B5E00610A5F /* Day4.txt in Resources */,
 				2D5A774621B95D7D00610A5F /* Day6.txt in Resources */,
+				2D814FF721C299FC0069BF89 /* Day13.txt in Resources */,
 				2D5A772F21B5720800610A5F /* Day2.txt in Resources */,
 				2D5A775321BDAA6700610A5F /* Day8.txt in Resources */,
 				2D5A775F21BEABEE00610A5F /* Day10.txt in Resources */,
@@ -318,8 +336,10 @@
 				2D5A772621B4435200610A5F /* Day1.swift in Sources */,
 				2D5A775121BDAA5900610A5F /* Day8.swift in Sources */,
 				2D5A774421B95D7400610A5F /* Day6.swift in Sources */,
+				2D814FFB21C2A1630069BF89 /* Direction.swift in Sources */,
 				2D5A773C21B735DB00610A5F /* Day5.swift in Sources */,
 				2D5A773721B63B5300610A5F /* Day4.swift in Sources */,
+				2D814FF921C29A0F0069BF89 /* Day13.swift in Sources */,
 				2D5A775B21BEABD300610A5F /* Day10.swift in Sources */,
 				2DE023D921C0275B00AE2FBF /* Int+Utility.swift in Sources */,
 				2D814FA321C14A2E0069BF89 /* Day12.swift in Sources */,

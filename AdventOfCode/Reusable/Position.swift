@@ -13,6 +13,15 @@ struct AnyPosition: Position {
     let x: Int
     let y: Int
 
+    func next(direction: Direction) -> AnyPosition {
+        switch direction {
+        case .up: return .init(x: x, y: y - 1)
+        case .down: return .init(x: x, y: y + 1)
+        case .left: return .init(x: x - 1, y: y)
+        case .right: return .init(x: x + 1, y: y)
+        }
+    }
+
 }
 
 protocol Position: Hashable {
