@@ -10,16 +10,23 @@ import Foundation
 
 final class Day15: Day {
 
-    struct Unit {
+    struct Unit: CustomStringConvertible {
         let isElf: Bool
-        let position: AnyPosition
+        var position: AnyPosition
+
+        var description: String { return "\(isElf ? "Elf" : "Goblin") at \(position)" }
     }
 
-    struct Grid {
+    struct Grid: CustomStringConvertible {
         // Keys are true if the position is open cavern
         let positions: [AnyPosition: Bool]
-        let units: [Unit]
+        var units: [Unit]
+
+        var description: String {
+            return units.map { String(describing: $0) }.joined(separator: "\n")
+        }
     }
+    lazy var grid: Grid = { parse(input().lines) }()
 
     func parse(_ lines: [String]) -> Grid {
         var positions: [AnyPosition: Bool] = [:]
@@ -42,8 +49,12 @@ final class Day15: Day {
         return .init(positions: positions, units: units)
     }
 
+    func iterate(_ grid: inout Grid) {
+
+    }
+
     func part1() -> String {
-        return String(describing: parse(input().lines))
+        return String(describing: grid)
     }
 
 }

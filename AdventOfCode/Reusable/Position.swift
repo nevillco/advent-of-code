@@ -24,7 +24,7 @@ struct AnyPosition: Position {
 
 }
 
-protocol Position: Hashable {
+protocol Position: Hashable, CustomStringConvertible {
 
     var x: Int { get }
     var y: Int { get }
@@ -39,6 +39,10 @@ extension Position {
 
     static func +(lhs: Self, rhs: Self) -> AnyPosition {
         return .init(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
+    }
+
+    var description: String {
+        return "(\(x), \(y))"
     }
 
 }
